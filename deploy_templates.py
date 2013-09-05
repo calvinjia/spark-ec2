@@ -36,6 +36,17 @@ else:
   # 1 GB because Mesos leaves 1 GB free and requires 32 MB/task.
   spark_mb = max(512, system_ram_mb - 1300)
 
+if system_ram_mb > 20*1024:
+  # Leave 3 GB for the OS, HDFS and buffer cache
+  tachyon_mb = system_ram_mb - 13 * 1024
+elif system_ram_mb > 10*1024:
+  # Leave 2 GB for the OS & co.
+  tachyon_mb = system_ram_mb - 7 * 1024
+else:
+  # Leave 1.3 GB for the OS & co. Note that this must be more than
+  # 1 GB because Mesos leaves 1 GB free and requires 32 MB/task.
+  tachyon_mb = max(512, system_ram_mb - 1300)
+
 template_vars = {
   "master_list": os.getenv("MASTERS"),
   "active_master": os.getenv("MASTERS").split("\n")[0],
@@ -48,7 +59,8 @@ template_vars = {
   "shark_version": os.getenv("SHARK_VERSION"),
   "hadoop_major_version": os.getenv("HADOOP_MAJOR_VERSION"),
   "scala_home": os.getenv("SCALA_HOME"),
-  "java_home": os.getenv("JAVA_HOME")
+  "java_home": os.getenv("JAVA_HOME"),
+  "default_tachyon_mem": "%dMB" % tachyon_mb,
 }
 
 template_dir="/root/spark-ec2/templates"
