@@ -31,11 +31,9 @@ source .bashrc;
 # make
 # make install
 
-mkdir -p tachyon/conf
-
-# echo "Setuping tachyon"
-# git clone git@github.com:amplab/tachyon.git
-# cd tachyon
-# mvn package
+echo "Setuping tachyon"
+git clone git@github.com:amplab/tachyon.git
+cd tachyon
+mvn install
 
 popd
