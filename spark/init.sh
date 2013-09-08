@@ -12,6 +12,7 @@ git clone git@github.com:haoyuan/spark.git
 cd spark
 git checkout newdep
 sbt/sbt clean publish-local
+sbt/sbt assembly
 
 # # Github tag:
 # if [[ "$SPARK_VERSION" == *\|* ]]

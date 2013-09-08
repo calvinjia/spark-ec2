@@ -35,6 +35,6 @@ echo "Setuping tachyon"
 git clone git@github.com:haoyuan/tachyon.git
 cd tachyon
 git checkout newdep
-mvn install
+mvn install -DskipTests
 
 popd

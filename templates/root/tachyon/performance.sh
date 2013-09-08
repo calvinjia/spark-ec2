@@ -8,15 +8,15 @@ mkdir -p results;
 
 task=5
 
-MASTER_IP=localhost
+MASTER_IP=localhost:19998
 
 for i in {0..1}
 do
   j=$(($i*1))
   echo java -Xmx20g -Xms20g -cp target/tachyon-0.3.0-SNAPSHOT-jar-with-dependencies.jar \
-    tachyon.examples.PerformanceTest $MASTER_IP /performance 262144 4096 false 1 1 $task $j "&> results/$i.txt" \&
+    tachyon.examples.PerformanceTest $MASTER_IP /performance 262144 4096 false 1 1 $task $j "&> results/Task_$task\_$i.txt" \&
   java -Xmx20g -Xms20g -cp target/tachyon-0.3.0-SNAPSHOT-jar-with-dependencies.jar \
-    tachyon.examples.PerformanceTest $MASTER_IP /performance 262144 4096 false 1 1 $task $j &> results/$i.txt &
+    tachyon.examples.PerformanceTest $MASTER_IP /performance 262144 4096 false 1 1 $task $j &> results/Task_$task\_$i.txt &
 done
 
 # ./bin/format.sh ; ./bin/start-local.sh
