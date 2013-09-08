@@ -18,6 +18,7 @@ export SPARK_MEM={{default_spark_mem}}
 
 # Set JVM options and Spark Java properties
 SPARK_JAVA_OPTS+=" -Dspark.local.dir={{spark_local_dirs}}"
+SPARK_JAVA_OPTS+=" -Dspark.tachyon.address={{active_master}}:19998"
 export SPARK_JAVA_OPTS
 
 export HADOOP_HOME="/root/ephemeral-hdfs"
