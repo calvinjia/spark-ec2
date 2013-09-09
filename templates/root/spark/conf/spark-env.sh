@@ -30,9 +30,12 @@ SPARK_JAVA_OPTS+=" -Dspark.tachyon.address={{active_master}}:19998"
 # SPARK_JAVA_OPTS+=" -Dspark.kryoserializer.buffer.mb=10 -Dspark.storage.memoryFraction=0.9 -Dspark.storage.blockManagerHeartBeatMs=10000 -Dspark.locality.wait=40000 "
 # SPARK_JAVA_OPTS+=" -verbose:gc -XX:-PrintGCDetails -XX:+PrintGCTimeStamps "
 
-SPARK_JAVA_OPTS+=" -verbose:gc -XX:-PrintGCDetails -XX:+PrintGCTimeStamps -Dspark.kryoserializer.buffer.mb=10 -Dspark.storage.memoryFraction=0.9 -Dspark.storage.blockManagerHeartBeatMs=10000 -Dspark.locality.wait=40000 "
+SPARK_JAVA_OPTS+=" -verbose:gc -XX:-PrintGCDetails -XX:+PrintGCTimeStamps -Dspark.kryoserializer.buffer.mb=10 -Dspark.storage.memoryFraction=0.9 "
+SPARK_JAVA_OPTS+=" -Dspark.storage.blockManagerHeartBeatMs=10000 -Dspark.locality.wait=40000 -Dspark.serializer=org.apache.spark.serializer.KryoSerializer "
 
 export SPARK_JAVA_OPTS
+
+ulimit -n 32768
 
 export HADOOP_HOME="/root/ephemeral-hdfs"
 export SPARK_LIBRARY_PATH="/root/ephemeral-hdfs/lib/native/"
