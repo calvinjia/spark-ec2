@@ -19,6 +19,17 @@ export SPARK_MEM={{default_spark_mem}}
 # Set JVM options and Spark Java properties
 SPARK_JAVA_OPTS+=" -Dspark.local.dir={{spark_local_dirs}}"
 SPARK_JAVA_OPTS+=" -Dspark.tachyon.address={{active_master}}:19998"
+
+# On EC2, change the local.dir to /mnt/tmp
+#export AGENT_OPTS="-agentpath:/home/greyreef/yjp-12.0.5/bin/linux-x86-64/libyjpagent.so"
+#export DEBUG_OPTS="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8787"
+#SPARK_JAVA_OPTS=" $AGENT_OPTS "
+#SPARK_JAVA_OPTS=" -Dspark.serializer=spark.JavaSerializer "
+JVM_TUNING_OPTS=" -XX:+UnlockExperimentalVMOptions -XX:+AggressiveOpts -XX:+DoEscapeAnalysis -XX:+UseCompressedOops -XX:NewRatio=3 -XX:+UseG1GC"
+SPARK_JAVA_OPTS+=" $JVM_TUNING_OPTS -XX:-UseSplitVerifier -XX:ReservedCodeCacheSize=256m -XX:MaxPermSize=2g "
+SPARK_JAVA_OPTS+=" -Dspark.kryoserializer.buffer.mb=10 -Dspark.storage.memoryFraction=0.9 -Dspark.storage.blockManagerHeartBeatMs=10000 -Dspark.locality.wait=40000 "
+SPARK_JAVA_OPTS+=" -verbose:gc -XX:-PrintGCDetails -XX:+PrintGCTimeStamps "
+
 export SPARK_JAVA_OPTS
 
 export HADOOP_HOME="/root/ephemeral-hdfs"

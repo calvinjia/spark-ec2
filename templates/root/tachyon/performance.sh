@@ -6,17 +6,18 @@ cd /root/tachyon;
 
 mkdir -p results;
 
-task=5
+task=1
+mem_size=40g
 
-MASTER_IP=localhost:19998
+MASTER_IP={{active_master}}:19998
 
-for i in {0..1}
+for i in {0..31}
 do
   j=$(($i*1))
-  echo java -Xmx20g -Xms20g -cp target/tachyon-0.3.0-SNAPSHOT-jar-with-dependencies.jar \
-    tachyon.examples.PerformanceTest $MASTER_IP /performance 262144 4096 false 1 1 $task $j "&> results/Task_$task\_$i.txt" \&
-  java -Xmx20g -Xms20g -cp target/tachyon-0.3.0-SNAPSHOT-jar-with-dependencies.jar \
-    tachyon.examples.PerformanceTest $MASTER_IP /performance 262144 4096 false 1 1 $task $j &> results/Task_$task\_$i.txt &
+  echo java -Xmx$mem_size -Xms$mem_size -cp target/tachyon-0.3.0-SNAPSHOT-jar-with-dependencies.jar \
+    tachyon.examples.Performance $MASTER_IP /performance 262144 4096 false 1 2 $task $j "&> results/Task_$task\_$i.txt" \&
+  java -Xmx$mem_size -Xms$mem_size -cp target/tachyon-0.3.0-SNAPSHOT-jar-with-dependencies.jar \
+    tachyon.examples.Performance $MASTER_IP /performance 262144 4096 false 1 2 $task $j &> results/Task_$task\_$i.txt &
 done
 
 # ./bin/format.sh ; ./bin/start-local.sh
