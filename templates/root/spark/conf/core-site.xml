@@ -6,6 +6,11 @@
 <configuration>
 
   <property>
+    <name>fs.tachyon.impl</name>
+    <value>tachyon.hadoop.TFS</value>
+  </property>
+
+  <property>
     <name>hadoop.tmp.dir</name>
     <value>/mnt/ephemeral-hdfs</value>
   </property>

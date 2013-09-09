@@ -25,10 +25,12 @@ SPARK_JAVA_OPTS+=" -Dspark.tachyon.address={{active_master}}:19998"
 #export DEBUG_OPTS="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8787"
 #SPARK_JAVA_OPTS=" $AGENT_OPTS "
 #SPARK_JAVA_OPTS=" -Dspark.serializer=spark.JavaSerializer "
-JVM_TUNING_OPTS=" -XX:+UnlockExperimentalVMOptions -XX:+AggressiveOpts -XX:+DoEscapeAnalysis -XX:+UseCompressedOops -XX:NewRatio=3 -XX:+UseG1GC"
-SPARK_JAVA_OPTS+=" $JVM_TUNING_OPTS -XX:-UseSplitVerifier -XX:ReservedCodeCacheSize=256m -XX:MaxPermSize=2g "
-SPARK_JAVA_OPTS+=" -Dspark.kryoserializer.buffer.mb=10 -Dspark.storage.memoryFraction=0.9 -Dspark.storage.blockManagerHeartBeatMs=10000 -Dspark.locality.wait=40000 "
-SPARK_JAVA_OPTS+=" -verbose:gc -XX:-PrintGCDetails -XX:+PrintGCTimeStamps "
+# JVM_TUNING_OPTS=" -XX:+UnlockExperimentalVMOptions -XX:+AggressiveOpts -XX:+DoEscapeAnalysis -XX:+UseCompressedOops -XX:NewRatio=3 -XX:+UseG1GC"
+# SPARK_JAVA_OPTS+=" $JVM_TUNING_OPTS -XX:-UseSplitVerifier -XX:ReservedCodeCacheSize=256m -XX:MaxPermSize=2g "
+# SPARK_JAVA_OPTS+=" -Dspark.kryoserializer.buffer.mb=10 -Dspark.storage.memoryFraction=0.9 -Dspark.storage.blockManagerHeartBeatMs=10000 -Dspark.locality.wait=40000 "
+# SPARK_JAVA_OPTS+=" -verbose:gc -XX:-PrintGCDetails -XX:+PrintGCTimeStamps "
+
+SPARK_JAVA_OPTS+=" -verbose:gc -XX:-PrintGCDetails -XX:+PrintGCTimeStamps -Dspark.kryoserializer.buffer.mb=10 -Dspark.storage.memoryFraction=0.9 -Dspark.storage.blockManagerHeartBeatMs=10000 -Dspark.locality.wait=40000 "
 
 export SPARK_JAVA_OPTS
 
