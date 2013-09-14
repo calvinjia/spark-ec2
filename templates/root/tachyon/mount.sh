@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-FOLDERS=(/mnt/hadoop/tmp)
+# FOLDERS=(/mnt/hadoop/tmp)
+FOLDERS=(/mnt/ephemeral-hdfs /mnt2/ephemeral-hdfs)
 SIZE=1g
 
 for F in ${FOLDERS[*]}

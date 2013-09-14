@@ -4,6 +4,8 @@ SLAVES=(
 {{slave_list}}
 )
 
+mkdir -p /root/tachyon/results
+
 for host in ${SLAVES[*]}
 do
   # echo $host
