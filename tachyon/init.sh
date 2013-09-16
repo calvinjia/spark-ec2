@@ -32,7 +32,7 @@ source .bashrc;
 # make install
 
 echo "Setuping tachyon"
-git clone git@github.com:haoyuan/tachyon.git
+git clone https://github.com/haoyuan/tachyon.git
 cd tachyon
 git checkout newdep
 mvn install -DskipTests
