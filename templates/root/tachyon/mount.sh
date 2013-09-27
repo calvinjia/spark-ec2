@@ -2,7 +2,7 @@
 
 # FOLDERS=(/mnt/hadoop/tmp)
 FOLDERS=(/mnt/ephemeral-hdfs /mnt2/ephemeral-hdfs)
-SIZE=1g
+SIZE=64g
 
 for F in ${FOLDERS[*]}
 do
