@@ -16,6 +16,9 @@ export SCALA_HOME={{scala_home}}
 # and have the master's SPARK_MEM variable get passed to the workers.
 export SPARK_MEM={{default_spark_mem}}
 
+# Use the public hostname of this EC2 machine for web UIs
+export SPARK_PUBLIC_DNS=`wget -q -O - http://instance-data.ec2.internal/latest/meta-data/public-hostname`
+
 # Set JVM options and Spark Java properties
 SPARK_JAVA_OPTS+=" -Dspark.local.dir={{spark_local_dirs}}"
 SPARK_JAVA_OPTS+=" -Dspark.tachyon.address={{active_master}}:19998"
