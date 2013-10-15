@@ -32,9 +32,9 @@ source .bashrc;
 # make install
 
 echo "Setuping tachyon"
-git clone https://github.com/haoyuan/tachyon.git
+git clone https://github.com/calvinjia/tachyon.git
 cd tachyon
-git checkout newdep
+git checkout master
 mvn install -DskipTests
 
 popd
