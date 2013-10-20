@@ -9,8 +9,8 @@ fi
 
 echo "Setuping spark"
 git clone git://github.com/apache/incubator-spark.git
-cd spark
-git checkout master
+cd incubator-spark
+git checkout branch-0.8
 sbt/sbt clean assembly
 sbt/sbt publish-local
 
