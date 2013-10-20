@@ -8,7 +8,7 @@ if [ -d "spark" ]; then
 fi
 
 echo "Setuping spark"
-git clone https://github.com/amplab/spark.git
+git clone git://github.com/apache/incubator-spark.git
 cd spark
 git checkout master
 sbt/sbt clean assembly
